@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Find Rev",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\${workspaceFolderBasename}.exe",
+            "args": [
+                "-u=infodba",
+                "-p=infodba",
+                "-g=dba",
+                "-id=000012",
+                "-revId=A"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}\\bin",
+            "environment": [],
+            "externalConsole": false
+        },
+        {
+            "name": "Rev not found",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\${workspaceFolderBasename}.exe",
+            "args": [
+                "-u=infodba",
+                "-p=infodba",
+                "-g=dba",
+                "-id=0000dd12",
+                "-revId=A"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}\\bin",
+            "environment": [],
+            "externalConsole": false
+        }
+    ]
+}

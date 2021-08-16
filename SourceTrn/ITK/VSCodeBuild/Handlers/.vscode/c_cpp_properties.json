@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "Win64",
+            "includePath": [
+                "${workspaceFolder}/src/**",
+                "${env:TC_INCLUDE}",
+                "${env:TC_ROOT}/include_cpp",
+                "${env:SOA_CLIENT_HOME}/cpp/includes/cpp-managed/include",
+                "${env:SOA_CLIENT_HOME}/cpp/includes/cpp/include",
+                "${env:SOA_CLIENT_HOME}/toolbox/XMLTools/include",
+                "${env:SOA_CLIENT_HOME}/toolbox/XMLTools/include/icu/common"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.17763.0",
+            "compilerPath": "${env:MSDEV_HOME}/Tools/MSVC/14.16.27023/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

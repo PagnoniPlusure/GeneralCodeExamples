@@ -1,0 +1,57 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "process",
+            "label": "Rebuild all",
+            "command": "${env:VSCTCSCRIPTS}genericCompiler.bat",
+            "args": [
+                "${workspaceFolder}\\bin\\${workspaceFolderBasename}",
+                "-exe"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "process",
+            "label": "Clean build",
+            "command": "${env:VSCTCSCRIPTS}genericCompiler.bat",
+            "args": [
+                "${workspaceFolder}\\bin\\${workspaceFolderBasename}",
+                "-exe",
+                "-rebuild"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "MS Build",
+            "command": "msbuild",
+            "args": [],
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "MS Rebuild all",
+            "command": "msbuild",
+            "args": [
+                "/t:Rebuild"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build"
+        }
+    ]
+}

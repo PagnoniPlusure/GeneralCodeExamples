@@ -1,0 +1,9 @@
+
+ConsoleApps/.vs
+ConsoleApps/ConsoleApp/Debug
+ConsoleApps/Debug
+*.dll
+*.obj
+*.log
+*.syslog
+*.pdb

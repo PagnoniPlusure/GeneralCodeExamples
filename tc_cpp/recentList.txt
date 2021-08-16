@@ -1,0 +1,6 @@
+D:\devel\CodeGeneralExamples\VSCodeBuild\TestTrnFinRevCpp
+C:\Users\infodba\Desktop\VSCodeBuild\TestTrnFinRevCpp
+C:\Users\infodba\Desktop\SourceTrn\ITK\VSCodeBuild\TestTrnFinRevCpp
+C:\Users\infodba\Desktop\Esercizio
+E:\DevRoot\SourceTrn\ITK\Batch
+C:\Users\infodba\Desktop\workspaces-20210721T121518Z-001\workspaces\ITK_Base
