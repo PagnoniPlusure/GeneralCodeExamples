@@ -7,6 +7,7 @@
 #include <comdef.h>
 #include <windows.h>
 #include <vector>
+#include <tuple>
 
 #import "C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX86\Microsoft Shared\OFFICE16\mso.dll" rename("RGB", "MSRGB"), rename("DocumentProperties", "MSDocumentProperties")
 #import "C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX86\Microsoft Shared\VBA\VBA6\VBE6EXT.OLB" raw_interfaces_only, rename("Reference", "ignorethis"), rename("VBE", "testVBE")
@@ -18,9 +19,33 @@ using namespace Office;
 using namespace VBIDE;
 using namespace std;
 
-//const string filePath = "D:\\devel\\CodeGeneralExamples\\ConsoleApps\\TryExcel.xls";
 
-// Configuration
+#define SEARCH_PH_FAILED()				if(ptrFirstFound == NULL) \
+										{ \
+											ptrFirstFound = ptrCurrentFound; \
+										}
+#define SEARCH_PH_START(__id__)	{ \
+											EExcel::RangePtr ptrFirstFound = NULL; \
+											EExcel::RangePtr ptrCurrentFound = ptrRange->Find(__id__, (ptrRange->Item[1][1]), vtMissing, EExcel::xlPart, EExcel::xlByRows, EExcel::xlNext, VARIANT_TRUE); \
+											while(ptrCurrentFound != NULL) \
+											{ \
+												if(ptrFirstFound != NULL && ptrCurrentFound->GetAddress(vtMissing, vtMissing, EExcel::xlA1) == ptrFirstFound->GetAddress(vtMissing, vtMissing, EExcel::xlA1)) \
+												{ \
+													break; \
+												} \
+												std::string value = (char*)((_bstr_t)(ptrCurrentFound->Value2)); \
+												if(value == __id__) \
+												{
+#define SEARCH_PH_END()							} \
+												else \
+												{ \
+													SEARCH_PH_FAILED(); \
+												} \
+												_variant_t test = static_cast<IDispatch*>(ptrCurrentFound); \
+												ptrCurrentFound = ptrRange->FindNext(test); \
+											} \
+										}
+
 string applicableDocs;           // CM
 bool showComponents = true;           // All
 string customer;                 // CM
@@ -35,6 +60,25 @@ string title;                    // CM
 string pageLayout = "A4 H";      // User
 string language = "English";     // CM
 vector<string> columns;     // All
+
+void SubstitutePHs(
+	EExcel::RangePtr ptrRange,
+	 vector<tuple<string,string>> placeHolders)
+{
+	for (auto&& tuple : placeHolders)
+	{
+		string key, value;
+		std::tie(key, value) = tuple;
+
+		std::cout << key << " : " << value  << std::endl;
+
+		ptrRange->Replace(key.c_str(), value.c_str());
+
+		//SEARCH_PH_START(key.c_str());
+		//ptrCurrentFound->Value2 = value.c_str();
+		//SEARCH_PH_END();
+	}
+}
 
 string GetFilePath(
 	string path,
@@ -92,23 +136,53 @@ int Finalyze(
 	return 0;
 }
 
-
-int LED_generate_report ()
+int LED_generate_report()
 {
-	string filePath = GetFilePath(
+	string templateFilePath = GetFilePath(
 		"D:\\devel\\CodeGeneralExamples\\ConsoleApps",
-		"TemplateLED.xlsx");
+		"ProdTemplate.xlsx");
 
-	EExcel::_ApplicationPtr pXL = OpenExcel(filePath);
+	EExcel::_ApplicationPtr templateExcelPointer = OpenExcel(templateFilePath);
 
-	if (pXL == NULL)
+	if (templateExcelPointer == NULL)
 		return 20;//TODO
 
-	EExcel::_WorksheetPtr pWksheet = pXL->ActiveSheet;
-	EExcel::RangePtr pRange = pWksheet->Cells;
+	EExcel::_WorksheetPtr pWksheet = templateExcelPointer->ActiveSheet;
+	EExcel::RangePtr ptrRange = pWksheet->Cells;
 
-	return 0;
+	vector<tuple<string, string>> placeHolders;
+
+	placeHolders.push_back(std::make_tuple("<title>", "LEONARDO ELECTRONICS REPORT SAMPLE"));
+	placeHolders.push_back(std::make_tuple("<docNumber>", "PG10004.08.2237TR"));
+	placeHolders.push_back(std::make_tuple("<docRev>", "02.00"));
+	placeHolders.push_back(std::make_tuple("<docDate>", "25/06/2021"));
+	placeHolders.push_back(std::make_tuple("<cageCode>", "A1615"));
+	placeHolders.push_back(std::make_tuple("<customer>", "PD&CM"));
+	placeHolders.push_back(std::make_tuple("<projName>", "REPORT TCU"));
+	placeHolders.push_back(std::make_tuple("<system>", ""));
+	placeHolders.push_back(std::make_tuple("<subSystem>", "/"));
+	placeHolders.push_back(std::make_tuple("<contractId>", ""));
+	placeHolders.push_back(std::make_tuple("<unclassPages>", "10"));
+	placeHolders.push_back(std::make_tuple("<unclassConPages>", ""));
+	placeHolders.push_back(std::make_tuple("<restrPages>", ""));
+	placeHolders.push_back(std::make_tuple("<confidPages>", ""));
+	placeHolders.push_back(std::make_tuple("<secretPages>", ""));
+	placeHolders.push_back(std::make_tuple("<totPages>", "10"));
+
+	SubstitutePHs(
+		ptrRange,
+		placeHolders);
+
+	string templateModifiedFilePath = GetFilePath(
+		"D:\\devel\\CodeGeneralExamples\\ConsoleApps",
+		"TemplateLEDFinal.xlsx");
+
+	return Finalyze(
+		templateExcelPointer,
+		templateModifiedFilePath);
 }
+
+
 
 int Try_excel_Modify_Cells()
 {
@@ -141,7 +215,9 @@ int Try_excel_Modify_Cells()
 	value1 = pRange->Item[1][1];
 	std::cout << "New value in CELL [1][1] = " << value1 << std::endl;
 	value2 = pRange->Item[1][2];
-	std::cout << "New value in CELL [1][2] = " << value2 << std::endl;	
+	std::cout << "New value in CELL [1][2] = " << value2 << std::endl;
 
-	return 0;
+	return Finalyze(
+		pXL,
+		filePath);
 }

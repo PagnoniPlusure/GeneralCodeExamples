@@ -4,6 +4,7 @@
 #include <vector>       // std::vector
 #include "CommonFunctions.h"
 #include "TryExcel.h"
+#include <tuple>
 
 using namespace std;
 
@@ -75,9 +76,36 @@ void TryUnique()
 	}
 }
 
+void TryTuples()
+{
+	std::vector<std::tuple<int, int, int>>  tuples;
+
+	tuples.push_back(std::make_tuple(21, 20, 19));
+	tuples.push_back(std::make_tuple(18, 17, 19));
+
+	//for (auto[X, Y, Z] : tuples)  //works only from C++ 17
+	//{
+	//	std::cout << X << " " << Y << " " << Z << std::endl;
+	//}
+
+	tuples.push_back(std::make_tuple(21, 20, 19));
+	tuples.push_back(std::make_tuple(18, 17, 19));
+
+	for (auto&& tuple : tuples)
+	{
+		int X, Y, Z;
+		std::tie(X, Y, Z) = tuple;
+
+		std::cout << X << " " << Y << " " << Z << std::endl;
+	}
+
+}
+
 int main()
 {
 	LED_generate_report();
+
+	//TryTuples();
 
 	//Try_excel_Modify_Cells();
 
