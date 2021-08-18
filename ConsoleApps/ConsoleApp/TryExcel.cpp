@@ -138,9 +138,13 @@ int Finalyze(
 
 int LED_generate_report()
 {
+	bool useEngTemplate = true;
+
+	string templateName = useEngTemplate ? "ProdTemplate_EN.xlsx" : "ProdTemplate_IT.xlsx";
+
 	string templateFilePath = GetFilePath(
 		"D:\\devel\\CodeGeneralExamples\\ConsoleApps",
-		"ProdTemplate.xlsx");
+		templateName);
 
 	EExcel::_ApplicationPtr templateExcelPointer = OpenExcel(templateFilePath);
 
@@ -160,7 +164,8 @@ int LED_generate_report()
 	placeHolders.push_back(std::make_tuple("<customer>", "PD&CM"));
 	placeHolders.push_back(std::make_tuple("<projName>", "REPORT TCU"));
 	placeHolders.push_back(std::make_tuple("<system>", ""));
-	placeHolders.push_back(std::make_tuple("<subSystem>", "/"));
+	placeHolders.push_back(std::make_tuple("<subSystem>", ""));
+	placeHolders.push_back(std::make_tuple("<cdrl>", "N/A"));
 	placeHolders.push_back(std::make_tuple("<contractId>", ""));
 	placeHolders.push_back(std::make_tuple("<unclassPages>", "10"));
 	placeHolders.push_back(std::make_tuple("<unclassConPages>", ""));
@@ -168,6 +173,9 @@ int LED_generate_report()
 	placeHolders.push_back(std::make_tuple("<confidPages>", ""));
 	placeHolders.push_back(std::make_tuple("<secretPages>", ""));
 	placeHolders.push_back(std::make_tuple("<totPages>", "10"));
+	placeHolders.push_back(std::make_tuple("<telAuthor>", "+39 06 41503294"));
+	placeHolders.push_back(std::make_tuple("<emailAuthor>", "stefano.quartucci@leonardocompany.com"));
+	placeHolders.push_back(std::make_tuple("<author>", "Stefano Quartucci"));
 
 	SubstitutePHs(
 		ptrRange,
@@ -175,7 +183,7 @@ int LED_generate_report()
 
 	string templateModifiedFilePath = GetFilePath(
 		"D:\\devel\\CodeGeneralExamples\\ConsoleApps",
-		"TemplateLEDFinal.xlsx");
+		"LEDReport.xlsx");
 
 	return Finalyze(
 		templateExcelPointer,
