@@ -1,6 +1,7 @@
+#include "CommonIncludes.h"
+
 void printIndex(int i);
 
-
-struct ClassWithPrintIndexMethod {           // function object type:
+struct ClassWithPrintIndexMethod {  
 	void operator() (int i) { std::cout << ' ' << i; }
 };

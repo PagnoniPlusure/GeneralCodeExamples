@@ -1,6 +1,6 @@
-#include <iostream>     // std::cout
+#include "CommonFunctions.h"
 
-void printIndex(int i) {  // function:
+void printIndex(int i)
+{  
 	std::cout << ' ' << i;
-
 }

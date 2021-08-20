@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,12 +153,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CommonFunctions.cpp" />
-    <ClCompile Include="ConsoleApp.cpp" />
+    <ClCompile Include="Containers.cpp" />
+    <ClCompile Include="Costructs.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="TryExcel.cpp" />
+    <ClCompile Include="Tuples.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFunctions.h" />
+    <ClInclude Include="CommonIncludes.h" />
+    <ClInclude Include="Containers.h" />
+    <ClInclude Include="Costructs.h" />
     <ClInclude Include="TryExcel.h" />
+    <ClInclude Include="Tuples.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

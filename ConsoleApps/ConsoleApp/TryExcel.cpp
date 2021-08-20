@@ -1,23 +1,8 @@
 #include "TryExcel.h"
-
-#include <string>
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <comdef.h>
-#include <windows.h>
-#include <vector>
-#include <tuple>
-
-#import "C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX86\Microsoft Shared\OFFICE16\mso.dll" rename("RGB", "MSRGB"), rename("DocumentProperties", "MSDocumentProperties")
-#import "C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX86\Microsoft Shared\VBA\VBA6\VBE6EXT.OLB" raw_interfaces_only, rename("Reference", "ignorethis"), rename("VBE", "testVBE")
-#import "C:\Program Files (x86)\Microsoft Office\root\OFFICE16\excel.exe" exclude("IFont", "IPicture") rename("RGB", "ignorethis"), rename("DialogBox", "ignorethis"), rename("VBE", "testVBE"), rename("ReplaceText", "EReplaceText"), rename("CopyFile","ECopyFile"), rename("FindText", "EFindText"), rename("NoPrompt", "ENoPrompt"), rename("Excel","EExcel")
-
-
+#include "CommonFunctions.h"
 
 using namespace Office;
 using namespace VBIDE;
-using namespace std;
 
 
 #define SEARCH_PH_FAILED()				if(ptrFirstFound == NULL) \
@@ -73,10 +58,6 @@ void SubstitutePHs(
 		std::cout << key << " : " << value  << std::endl;
 
 		ptrRange->Replace(key.c_str(), value.c_str());
-
-		//SEARCH_PH_START(key.c_str());
-		//ptrCurrentFound->Value2 = value.c_str();
-		//SEARCH_PH_END();
 	}
 }
 
