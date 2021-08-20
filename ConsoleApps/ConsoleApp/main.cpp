@@ -3,6 +3,7 @@
 #include "Tuples.h"
 #include "Costructs.h"
 #include "Containers.h"
+#include "Lambdas.h"
 
 int main()
 {
@@ -37,6 +38,13 @@ int main()
 	TryTie();
 
 #pragma endregion
+
+#pragma region Lambda Expressions
+
+	tryLambdaConstExpr();
+
+#pragma endregion
+
 
 	return 0;
 }

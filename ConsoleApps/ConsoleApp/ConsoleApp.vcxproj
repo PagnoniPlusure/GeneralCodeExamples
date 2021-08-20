@@ -155,6 +155,7 @@
     <ClCompile Include="CommonFunctions.cpp" />
     <ClCompile Include="Containers.cpp" />
     <ClCompile Include="Costructs.cpp" />
+    <ClCompile Include="Lambdas.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TryExcel.cpp" />
     <ClCompile Include="Tuples.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Containers.h" />
     <ClInclude Include="Costructs.h" />
+    <ClInclude Include="Lambdas.h" />
     <ClInclude Include="TryExcel.h" />
     <ClInclude Include="Tuples.h" />
   </ItemGroup>
