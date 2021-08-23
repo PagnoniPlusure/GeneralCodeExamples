@@ -7,3 +7,5 @@ ConsoleApps/Debug
 *.log
 *.syslog
 *.pdb
+ConsoleApps/~$ProductTreeIT.xlsx
+ConsoleApps/~$ReportLEDBrenchich.xls.xlsx

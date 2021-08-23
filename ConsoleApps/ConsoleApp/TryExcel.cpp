@@ -119,9 +119,9 @@ int Finalyze(
 
 int LED_generate_report()
 {
-	bool useEngTemplate = true;
+	bool useEngTemplate = false;
 
-	string templateName = useEngTemplate ? "ProdTemplate_EN.xlsx" : "ProdTemplate_IT.xlsx";
+	string templateName = useEngTemplate ? "ProductTreeEN.xlsx" : "ProductTreeIT.xlsx";
 
 	string templateFilePath = GetFilePath(
 		"D:\\devel\\CodeGeneralExamples\\ConsoleApps",
@@ -147,7 +147,7 @@ int LED_generate_report()
 	placeHolders.push_back(std::make_tuple("<system>", ""));
 	placeHolders.push_back(std::make_tuple("<subSystem>", ""));
 	placeHolders.push_back(std::make_tuple("<cdrl>", "N/A"));
-	placeHolders.push_back(std::make_tuple("<contractId>", ""));
+	placeHolders.push_back(std::make_tuple("<contractId>", "gvggt5415616581"));
 	placeHolders.push_back(std::make_tuple("<unclassPages>", "10"));
 	placeHolders.push_back(std::make_tuple("<unclassConPages>", ""));
 	placeHolders.push_back(std::make_tuple("<restrPages>", ""));
@@ -157,6 +157,7 @@ int LED_generate_report()
 	placeHolders.push_back(std::make_tuple("<telAuthor>", "+39 06 41503294"));
 	placeHolders.push_back(std::make_tuple("<emailAuthor>", "stefano.quartucci@leonardocompany.com"));
 	placeHolders.push_back(std::make_tuple("<author>", "Stefano Quartucci"));
+	placeHolders.push_back(std::make_tuple("<prodTopItem>", "FORNITURA U212-NFS MF0100002201(00AA)"));
 
 	SubstitutePHs(
 		ptrRange,
@@ -164,7 +165,7 @@ int LED_generate_report()
 
 	string templateModifiedFilePath = GetFilePath(
 		"D:\\devel\\CodeGeneralExamples\\ConsoleApps",
-		"LEDReport.xlsx");
+		"Report.xlsx");
 
 	return Finalyze(
 		templateExcelPointer,
