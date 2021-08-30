@@ -1,3 +1,4 @@
+D:\devel\CodeGeneralExamples\SourceTrn\ITK\Batch
 D:\devel\CodeGeneralExamples\VSCodeBuild\LEDReportVSCode
 D:\devel\CodeGeneralExamples\VSCodeBuild\TestTrnFinRevCpp
 C:\Users\infodba\Desktop\VSCodeBuild\TestTrnFinRevCpp
