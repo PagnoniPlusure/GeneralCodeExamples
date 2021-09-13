@@ -5,3 +5,5 @@ void TryForeach();
 void TryDistinct();
 
 void TryUnique();
+
+void TryDistinctString();

@@ -48,6 +48,35 @@ void TryDistinct()
 	cout << "\n\n\n";
 }
 
+void TryDistinctString()
+{
+	vector<string> codeVect = { "A","B","C","A","B" };
+
+	vector<string>::iterator ip2;
+
+	// Sorting the array
+	std::sort(codeVect.begin(), codeVect.end());
+	// Now v becomes 1 1 2 2 3 3 3 3 7 7 8 10
+
+	// Using std::unique
+	ip2 = std::unique(codeVect.begin(), codeVect.end());
+	// Now v becomes {1 2 3 7 8 10 * * * * * *}
+	// * means undefined
+
+	// Resizing the vector so as to remove the undefined terms
+	codeVect.resize(std::distance(codeVect.begin(), ip2));
+
+
+	cout << "\n\nProva Distinct: my vector v2 now contains:\n";
+	// Displaying the vector after applying std::unique
+	for (ip2 = codeVect.begin(); ip2 != codeVect.end(); ++ip2) {
+		cout << "||" << *ip2 << " ";
+	}
+
+
+	cout << "\n\n\n";
+}
+
 void TryUnique()
 {
 	vector<int> v = { 1, 1, 3, 3, 3, 10, 1, 3, 3, 7, 7, 8 }, i;

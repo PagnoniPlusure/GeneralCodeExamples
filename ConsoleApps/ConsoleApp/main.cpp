@@ -9,11 +9,13 @@ int main()
 {
 #pragma region Costructs
 
-	TryForeach();
+	//TryForeach();
 
-	TryUnique();
+	//TryUnique();
 
-	TryDistinct();
+	//TryDistinct();
+
+	TryDistinctString();
 
 #pragma endregion	
 
