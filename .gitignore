@@ -9,3 +9,5 @@ ConsoleApps/Debug
 *.pdb
 ConsoleApps/~$ProductTreeIT.xlsx
 ConsoleApps/~$ReportLEDBrenchich.xls.xlsx
+*.pdf
+*.xlsx
